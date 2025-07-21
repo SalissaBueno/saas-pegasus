@@ -10,9 +10,11 @@ require('dotenv').config();       // Carrega variáveis de ambiente do arquivo .
 const app = express();
 const port = process.env.PORT || 5000; // Define a porta do servidor, ou usa 5000 por padrão
 
-// Configura o CORS para permitir requisições do seu frontend (localhost:3000)
+// Configura o CORS para permitir requisições do seu frontend
+// Em desenvolvimento local, será 'http://localhost:3000'
+// Em produção, será a URL do seu frontend no Vercel
 app.use(cors({
-    origin: 'http://localhost:3000' // Altere para a URL do seu frontend em produção
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000'
 }));
 
 // Habilita o Express a receber JSON no corpo das requisições
