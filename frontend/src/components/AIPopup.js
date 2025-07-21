@@ -32,10 +32,10 @@ const AIPopup = ({ isOpen, onClose, selectedFunction }) => {
         setIsLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:5000/api/generate-ai-response', {
-                hiddenPrompt: selectedFunction.prompt, // Envia o prompt oculto
-                userMessage: userMessage, // Envia a mensagem do usuário
-            });
+           const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/generate-ai-response`, {
+            hiddenPrompt: selectedFunction.prompt,
+            userMessage: userMessage,
+        });
 
             if (response.data.success) {
                 const aiResponse = { sender: 'ai', text: response.data.aiResponse };
